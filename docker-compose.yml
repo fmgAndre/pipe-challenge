@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  pipedrive-task-service:
+    container_name: pipedrive-task-service
+    build: .
+    command: npm run dev
+    ports:
+      - 3000:3000
+      - 3001:3001
+    environment:
+      NODE_ENV: development
+      HTTP_PORT: 3000
+      DEBUG_PORT: 3001
+      DATABASE_URL: 'postgresql://postgres:postgres@db:5432/pipedrive?schema=public'
+    restart: unless-stopped
+    volumes:
+      - .:/app/
+    networks:
+      - pipedrive
+
+  db:
+    image: postgres
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    restart: unless-stopped
+    networks:
+      - pipedrive
+
+networks:
+  pipedrive:
+    driver: bridge

@@ -1,0 +1,16 @@
+{
+  "org_name": "Apple",
+  "daughters": [
+    {
+      "org_name": "Banana 1",
+      "daughters": [
+        {
+          "org_name": "Coconut"
+        }
+      ]
+    },
+    {
+      "org_name": "Banana 2"
+    }
+  ]
+}
